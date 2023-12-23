@@ -1,6 +1,8 @@
+import DenominationModal from "@/components/DenominationModal";
 import { cn } from "@/lib/utils";
 import "@/styles/globals.css";
 import { Inter as FontSans } from "next/font/google";
+import { useEffect, useState } from "react";
 
 export const fontSans = FontSans({
   subsets: ["latin"],
@@ -8,6 +10,17 @@ export const fontSans = FontSans({
 });
 
 export default function App({ Component, pageProps }) {
+  const [denominationsModal, setdenominationsModal] = useState(false)
+  const [currencyModal, setCurrencyModal] = useState(false)
+
+  useEffect(() => {
+ let denominations = localStorage.getItem("denominations")
+ if(!denominations){
+  setdenominationsModal(true)
+ }
+  }, [])
+  
+
   return (
     <div
       className={cn(
@@ -16,6 +29,7 @@ export default function App({ Component, pageProps }) {
       )}
     >
       <Component {...pageProps} />
+      <DenominationModal open={denominationsModal} setopen={setdenominationsModal}/>
     </div>
   );
 }
