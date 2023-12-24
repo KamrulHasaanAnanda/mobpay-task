@@ -20,6 +20,7 @@ export default function App({ Component, pageProps }) {
  if(!denominations){
   setdenominationsModal(true)
  }
+ setCurrencyModal(true)
   }, [])
   
 
@@ -32,7 +33,7 @@ export default function App({ Component, pageProps }) {
     >
       <Component {...pageProps} />
       <DenominationModal open={denominationsModal} setopen={setdenominationsModal} setCurrencyModal={setCurrencyModal}/>
-      <CurrencyModal open={currencyModal} setopen={setCurrencyModal}/>
+      <CurrencyModal open={currencyModal} setopen={setCurrencyModal} setdenominationsModal={setdenominationsModal}/>
       <Toaster  />
 
     </div>

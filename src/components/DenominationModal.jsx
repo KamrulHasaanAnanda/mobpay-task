@@ -40,7 +40,7 @@ function DenominationModal({ open, setopen, setCurrencyModal }) {
     });
   };
   let addDenomination = () => {
-    console.log("formData", formData);
+    // console.log("formData", formData);
     let oldData = localStorage.getItem("denominations");
     if (!formData?.denominationName) {
       seterrorMessage({
@@ -58,21 +58,59 @@ function DenominationModal({ open, setopen, setCurrencyModal }) {
         denominationName: null,
         denominationValue: null,
       });
-      let denomination = {
-        name: formData?.denominationName,
-        value: formData?.denominationValue,
-      };
-      toast({
-        variant: "success",
-        title: "Success ",
-        description: "Denomination successfully added",
-        //
-      });
-      // console.log("denomination", denomination);
 
-      localStorage.setItem("denominations", JSON.stringify(denomination));
-      setopen(false);
-      setCurrencyModal(true);
+      if (oldData) {
+        oldData = JSON.parse(oldData);
+
+        let denomination = {
+          name: formData?.denominationName,
+          value: formData?.denominationValue,
+        };
+
+        let newArray = [denomination, ...oldData];
+        toast({
+          variant: "success",
+          title: "Success ",
+          description: "Denomination successfully added",
+          //
+        });
+        setformData({
+          denominationName: "",
+          denominationValue: "",
+        });
+        // console.log("denomination", denomination);
+
+        localStorage.setItem("denominations", JSON.stringify(newArray));
+        // setTimeout(() => {
+        setopen(false);
+        setCurrencyModal(true);
+        // }, 1000);
+      } else {
+        let denomination = [
+          {
+            name: formData?.denominationName,
+            value: formData?.denominationValue,
+          },
+        ];
+
+        toast({
+          variant: "success",
+          title: "Success ",
+          description: "Denomination successfully added",
+          //
+        });
+        // console.log("denomination", denomination);
+
+        localStorage.setItem("denominations", JSON.stringify(denomination));
+        setformData({
+          denominationName: "",
+          denominationValue: "",
+        });
+        // setTimeout(() => {
+        setopen(false);
+        setCurrencyModal(true);
+        // }, 1000);
+      }
     }
   };
   // console.log("errorMessage", errorMessage);
