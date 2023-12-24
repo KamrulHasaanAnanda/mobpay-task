@@ -1,13 +1,23 @@
 import React, { useState } from "react";
 import { Input } from "./ui/input";
 
-function Denominations({ value, sign }) {
-  const [input, setinput] = useState(0);
-  const handleChange = (value) => {
+function Denominations({ input, setInput, value, sign }) {
+  const handleChange = (data) => {
     // Ensure the value is not less than 0
-    const newValue = Math.max(0, input + value);
-    setinput(newValue);
+    const newValue = Math.max(0, input + data);
+    let count = {
+      value:value,
+      number:newValue
+    }
+    setInput({
+      ...input,
+      ...count
+    })
+    // setInput(newValue);
   };
+
+  console.log('data count', input)
+
   return (
     <div className="h-16 p-3 mt-5 flex justify-between items-center self-stretch rounded-md border border-solid border-gray-800 bg-gray-900">
       <p className="text-base font-medium leading-6 text-white">

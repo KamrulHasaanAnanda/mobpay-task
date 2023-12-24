@@ -4,14 +4,21 @@ import Denominations from "@/components/Denominations";
 import DenominationAdd from "@/components/DenominationAdd";
 import Balance from "@/components/Balance";
 export default function Home() {
-  const [open, setopen] = useState(false);
+  const [input, setInput] = useState(0);
   const [data, setdata] = useState();
   useEffect(() => {
     let currencyData = localStorage.getItem("currency");
     currencyData = JSON.parse(currencyData);
+    console.log('currencyData', currencyData)
     setdata(currencyData);
+    const v = currencyData?.denominations.map(value => ({
+      value: parseInt(value, 10), // Convert value to a number
+      count: 0
+    }));
+
+    setInput(v)
   }, []);
-  // console.log("data domi", data?.denominations?.length);
+  console.log("data domi", input);
 
   return (
     <main className={`flex flex-col h-screen bg-black w-full `}>
@@ -21,7 +28,7 @@ export default function Home() {
           <DenominationAdd />
           {data?.denominations.length > 0 &&
             data?.denominations.map((denomination,index) => (
-              <Denominations key={index} value={denomination} sign={data?.currency_sign} />
+              <Denominations input={input} setInput={setInput} key={index} value={denomination} sign={data?.currency_sign} />
             ))
             }
         </div>
