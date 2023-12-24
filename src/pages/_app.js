@@ -1,4 +1,6 @@
+import CurrencyModal from "@/components/CurrencyModal";
 import DenominationModal from "@/components/DenominationModal";
+import { Toaster } from "@/components/ui/toaster";
 import { cn } from "@/lib/utils";
 import "@/styles/globals.css";
 import { Inter as FontSans } from "next/font/google";
@@ -29,7 +31,10 @@ export default function App({ Component, pageProps }) {
       )}
     >
       <Component {...pageProps} />
-      <DenominationModal open={denominationsModal} setopen={setdenominationsModal}/>
+      <DenominationModal open={denominationsModal} setopen={setdenominationsModal} setCurrencyModal={setCurrencyModal}/>
+      <CurrencyModal open={currencyModal} setopen={setCurrencyModal}/>
+      <Toaster  />
+
     </div>
   );
 }

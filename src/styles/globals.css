@@ -8,6 +8,10 @@
   --background-end-rgb: 255, 255, 255;
 }
 
+
+.toast.success {
+  background-color: white !important;
+}
 @media (prefers-color-scheme: dark) {
   :root {
     --foreground-rgb: 255, 255, 255;
