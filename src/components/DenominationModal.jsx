@@ -68,12 +68,7 @@ function DenominationModal({ open, setopen, setCurrencyModal }) {
         };
 
         let newArray = [denomination, ...oldData];
-        toast({
-          variant: "success",
-          title: "Success ",
-          description: "Denomination successfully added",
-          //
-        });
+      
         setformData({
           denominationName: "",
           denominationValue: "",
@@ -81,9 +76,31 @@ function DenominationModal({ open, setopen, setCurrencyModal }) {
         // console.log("denomination", denomination);
 
         localStorage.setItem("denominations", JSON.stringify(newArray));
+
+        let total = localStorage.getItem("denominations");
+        total = JSON.parse(total);
+        total = total?.length;
+
+        if(total > 3){
+          toast({
+            variant: "success",
+            title: "Success ",
+            description: "Denomination successfully added",
+            //
+          });
+          setopen(false);
+          setCurrencyModal(true);
+        }else{
+          toast({
+            variant: "success",
+            title: "Success ",
+            description: "Denomination successfully added, please add more denomination(atleast 3)",
+            //
+          });
+        }
+
         // setTimeout(() => {
-        setopen(false);
-        setCurrencyModal(true);
+       
         // }, 1000);
       } else {
         let denomination = [
@@ -96,7 +113,7 @@ function DenominationModal({ open, setopen, setCurrencyModal }) {
         toast({
           variant: "success",
           title: "Success ",
-          description: "Denomination successfully added",
+          description: "Denomination successfully added,Please add more denomination",
           //
         });
         // console.log("denomination", denomination);
@@ -107,8 +124,8 @@ function DenominationModal({ open, setopen, setCurrencyModal }) {
           denominationValue: "",
         });
         // setTimeout(() => {
-        setopen(false);
-        setCurrencyModal(true);
+        // setopen(false);
+        // setCurrencyModal(true);
         // }, 1000);
       }
     }
