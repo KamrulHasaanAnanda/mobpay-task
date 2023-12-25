@@ -20,7 +20,7 @@ export default function App({ Component, pageProps }) {
  if(!denominations){
   setdenominationsModal(true)
  }
- setCurrencyModal(true)
+
   }, [])
   
 
@@ -31,7 +31,7 @@ export default function App({ Component, pageProps }) {
         fontSans.variable
       )}
     >
-      <Component {...pageProps} />
+      <Component {...pageProps} currencyModal={currencyModal} setCurrencyModal={setCurrencyModal}  />
       <DenominationModal open={denominationsModal} setopen={setdenominationsModal} setCurrencyModal={setCurrencyModal}/>
       <CurrencyModal open={currencyModal} setopen={setCurrencyModal} setdenominationsModal={setdenominationsModal}/>
       <Toaster  />

@@ -33,13 +33,13 @@ function CurrencyModal({ open, setopen, setdenominationsModal }) {
   const [errorMessage, seterrorMessage] = useState({
     denominations: null,
     currency_name: null,
-    currency_sign:null,
+    currency_sign: null,
   });
 
   useEffect(() => {
     let data = localStorage.getItem("denominations");
     data = JSON.parse(data);
-    console.log("data", data);
+    // console.log("data", data);
     if (data?.length > 0) {
       setdenominations(data);
     } else {
@@ -65,8 +65,8 @@ function CurrencyModal({ open, setopen, setdenominationsModal }) {
       [name]: values,
     });
   };
-  let submit = ()=>{
-    console.log('formData', formData)
+  let submit = () => {
+    // console.log('formData', formData)
     if (!formData?.currency_name) {
       seterrorMessage({
         ...errorMessage,
@@ -78,32 +78,58 @@ function CurrencyModal({ open, setopen, setdenominationsModal }) {
         ...errorMessage,
         currency_sign: "Currency sign can not be empty",
       });
-    }  
-    if (formData?.denominations?.length === 0 ) {
+    }
+    if (formData?.denominations?.length === 0) {
       seterrorMessage({
         ...errorMessage,
         denominations: "Denominations can not be empty or less than three",
       });
-    } 
-    else{
+    } else {
       seterrorMessage({
-        currency_name:null,
-        currency_sign:null,
-        denominations:null
-      })
-
-      localStorage.setItem("currency",JSON.stringify(formData))
-      toast({
-        variant: "success",
-        title: "Success ",
-        description: "Currency successfully added",
-        //
+        currency_name: null,
+        currency_sign: null,
+        denominations: null,
       });
-      setopen(false)
 
+      let currencies = localStorage.getItem("currency");
+      // console.log("currencies", currencies);
+      if (!currencies) {
+        let data = [{ ...formData }];
+
+        localStorage.setItem("currency", JSON.stringify(data));
+        localStorage.setItem("selected_currency", JSON.stringify(formData ));
+
+
+        setformData({
+          denominations: null,
+          currency_name: null,
+          currency_sign: null,
+        });
+        toast({
+          variant: "success",
+          title: "Success ",
+          description: "Currency successfully added",
+          //
+        });
+        setopen(false)
+      } else {
+        let oldData = JSON.parse(currencies);
+        let newData = [...oldData, { ...formData }];
+        localStorage.setItem("currency", JSON.stringify(newData));
+        setformData({
+          denominations: null,
+          currency_name: null,
+          currency_sign: null,
+        });
+        toast({
+          variant: "success",
+          title: "Success ",
+          description: "Currency successfully added",
+          //
+        });
+      }
     }
-
-  }
+  };
   return (
     <Dialog open={open} onOpenChange={setopen}>
       <DialogContent className="sm:max-w-[325px] w-11/12 bg-white border-none rounded">
@@ -140,8 +166,8 @@ function CurrencyModal({ open, setopen, setdenominationsModal }) {
               className="mt-1 w-full border rounded-md p-2 focus:outline-none focus:ring focus:border-blue-300"
             >
               {denominations?.length > 0 &&
-                denominations.map((denomination) => (
-                  <option value={denomination.value} key={denomination.name}>
+                denominations.map((denomination, index) => (
+                  <option value={denomination.value} key={index}>
                     {denomination.value}
                   </option>
                 ))}
@@ -168,7 +194,7 @@ function CurrencyModal({ open, setopen, setdenominationsModal }) {
               className="border border-gray-400"
               onChange={handleChange}
             />
-             {errorMessage.currency_name && (
+            {errorMessage.currency_name && (
               <p
                 style={{
                   color: " #F44336",
@@ -190,7 +216,7 @@ function CurrencyModal({ open, setopen, setdenominationsModal }) {
               className="border border-gray-400"
               onChange={handleChange}
             />
-             {errorMessage.currency_sign && (
+            {errorMessage.currency_sign && (
               <p
                 style={{
                   color: " #F44336",
