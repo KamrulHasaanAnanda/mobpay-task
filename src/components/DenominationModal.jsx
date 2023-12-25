@@ -81,7 +81,7 @@ function DenominationModal({ open, setopen, setCurrencyModal }) {
         total = JSON.parse(total);
         total = total?.length;
 
-        if(total > 3){
+        if(total > 2){
           toast({
             variant: "success",
             title: "Success ",
@@ -138,7 +138,7 @@ function DenominationModal({ open, setopen, setCurrencyModal }) {
           <DialogTitle>ADD DENOMINATION</DialogTitle>
         </DialogHeader>
         <div className="grid py-4">
-          <div className="flex flex-col gap-2">
+          {/* <div className="flex flex-col gap-2">
             <h4 htmlFor="name" className="font-semibold">
               Denomination Name
             </h4>
@@ -159,7 +159,7 @@ function DenominationModal({ open, setopen, setCurrencyModal }) {
                 {errorMessage?.denominationName}
               </p>
             )}
-          </div>
+          </div> */}
           <div className="flex flex-col gap-2 mt-2">
             <h4 htmlFor="name" className="font-semibold">
               Value
