@@ -6,12 +6,10 @@ function Balance({ input }) {
 
   useEffect(() => {
     if (Array.isArray(input)) {
-      // Calculate the sum of (value * count) for all items in the array
       const sumNow = input.reduce(
         (acc, item) => acc + item.value * item.count,
         0
       );
-      // console.log('Sum:', sum);
       setsum(sumNow);
     }
   }, [input]);
