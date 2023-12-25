@@ -1,22 +1,18 @@
 import React, { useState } from "react";
 import { Input } from "./ui/input";
 
-function Denominations({ input, setInput, value, sign }) {
+function Denominations({ input, setInput, count, value, sign }) {
   const handleChange = (data) => {
-    // Ensure the value is not less than 0
-    const newValue = Math.max(0, input + data);
-    let count = {
-      value:value,
-      number:newValue
-    }
-    setInput({
-      ...input,
-      ...count
-    })
-    // setInput(newValue);
-  };
+    const newValue = Math.max(0, count + data);
+    const updatedInput = input.map((item) => {
+      if (item.value === value) {
+        return { ...item, count: newValue };
+      }
+      return item;
+    });
 
-  console.log('data count', input)
+    setInput(updatedInput);
+  };
 
   return (
     <div className="h-16 p-3 mt-5 flex justify-between items-center self-stretch rounded-md border border-solid border-gray-800 bg-gray-900">
@@ -37,7 +33,7 @@ function Denominations({ input, setInput, value, sign }) {
         >
           -
         </h4>
-        <Input className="w-10 border-none" value={input} />
+        <Input className="w-10 border-none" value={count} />
         <h4
           onClick={() => handleChange(1)}
           style={{

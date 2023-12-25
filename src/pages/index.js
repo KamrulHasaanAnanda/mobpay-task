@@ -26,9 +26,9 @@ export default function Home() {
       <div className="flex flex-col items-center justify-center h-full">
         <div className=" md:w-1/2 w-11/12 sm:w-11/12 lg:w-1/2">
           <DenominationAdd />
-          {data?.denominations.length > 0 &&
-            data?.denominations.map((denomination,index) => (
-              <Denominations input={input} setInput={setInput} key={index} value={denomination} sign={data?.currency_sign} />
+          {input?.length > 0 &&
+            input.map((denomination,index) => (
+              <Denominations input={input} setInput={setInput} key={index} count={denomination?.count} value={denomination?.value} sign={data?.currency_sign} />
             ))
             }
         </div>
