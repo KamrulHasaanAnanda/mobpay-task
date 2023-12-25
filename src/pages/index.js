@@ -22,7 +22,7 @@ export default function Home() {
 
   return (
     <main className={`flex flex-col h-screen bg-black w-full `}>
-      <Balance />
+      <Balance input={input} />
       <div className="flex flex-col items-center justify-center h-full">
         <div className=" md:w-1/2 w-11/12 sm:w-11/12 lg:w-1/2">
           <DenominationAdd />
