@@ -19,12 +19,12 @@ export default function Home({ currencyModal, setCurrencyModal }) {
     if (nowValue?.length > 2) {
       setInput(nowValue);
     } else {
-      const v = currencyData?.denominations.map((value) => ({
+      const valueToStore = currencyData?.denominations.map((value) => ({
         value: parseInt(value, 10), // Convert value to a number
         count: 0,
       }));
 
-      setInput(v);
+      setInput(valueToStore);
     }
   }, [currencyModal]);
 
