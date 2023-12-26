@@ -1,15 +1,37 @@
-Navigate to the Project Directory & Install Dependencies:
-# npm install
+# MobPay Task
 
-Running the Application:
-# npm run dev
+Welcome to the MobPay Task repository! This project utilizes Next.js for the front end, along with Tailwind CSS and Shadcn UI for styling and UI components.
+
+## Table of Contents
+
+- [Installation](#installation)
+- [Running the Application](#running-the-application)
+- [External Libraries](#external-libraries)
+- [Live Demo](#live-demo)
 
 
-EXTERNAL LIBERIES USED IN THE PROJECT:
+## Installation
 
-# TAILWIND 
-# SHADCN UI
+Follow these steps to set up the project:
+
+1. **Clone the Repository:**
+
+   ```bash
+   git clone https://github.com/yourusername/mobpay-task.git
+
+## Running the Application
+1. **Install the dependency:**
+
+    npm install
+
+2. **Run the project**
+
+    npm run dev
+
+## External Libraries
+   Shadcn ui and tailwind is used to create the application ui
+
+## Live Demo
+    https://mobpay-task.vercel.app/
 
 
-Can also check the live link :
-# https://mobpay-task.vercel.app/
