@@ -29,7 +29,7 @@ function Denominations({ input, setInput, count, value, sign }) {
             height: 15,
             fontSize: 10,
           }}
-          className="text-white border border-solid border-white h-15 w-15 flex justify-center items-center text-xs"
+          className="text-white border border-solid border-white h-15 w-15 flex justify-center items-center text-xs cursor-pointer"
         >
           -
         </h4>
@@ -42,7 +42,7 @@ function Denominations({ input, setInput, count, value, sign }) {
             height: 15,
             fontSize: 10,
           }}
-          className="text-white rounded-lg border border-solid border-white h-15 w-15 flex justify-center items-center text-xs"
+          className="text-white rounded-lg border border-solid border-white h-15 w-15 flex justify-center items-center text-xs cursor-pointer"
         >
           +
         </h4>
