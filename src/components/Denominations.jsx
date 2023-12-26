@@ -10,7 +10,7 @@ function Denominations({ input, setInput, count, value, sign }) {
       }
       return item;
     });
-
+    localStorage.setItem("nowValue", JSON.stringify(updatedInput));
     setInput(updatedInput);
   };
 

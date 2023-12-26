@@ -68,7 +68,7 @@ function DenominationModal({ open, setopen, setCurrencyModal }) {
         };
 
         let newArray = [denomination, ...oldData];
-      
+
         setformData({
           denominationName: "",
           denominationValue: "",
@@ -81,7 +81,7 @@ function DenominationModal({ open, setopen, setCurrencyModal }) {
         total = JSON.parse(total);
         total = total?.length;
 
-        if(total > 2){
+        if (total > 2) {
           toast({
             variant: "success",
             title: "Success ",
@@ -90,17 +90,18 @@ function DenominationModal({ open, setopen, setCurrencyModal }) {
           });
           setopen(false);
           setCurrencyModal(true);
-        }else{
+        } else {
           toast({
             variant: "success",
             title: "Success ",
-            description: "Denomination successfully added, please add more denomination(atleast 3)",
+            description:
+              "Denomination successfully added, please add more denomination(atleast 3)",
             //
           });
         }
 
         // setTimeout(() => {
-       
+
         // }, 1000);
       } else {
         let denomination = [
@@ -113,7 +114,8 @@ function DenominationModal({ open, setopen, setCurrencyModal }) {
         toast({
           variant: "success",
           title: "Success ",
-          description: "Denomination successfully added,Please add more denomination",
+          description:
+            "Denomination successfully added,Please add more denomination",
           //
         });
         // console.log("denomination", denomination);
@@ -130,9 +132,26 @@ function DenominationModal({ open, setopen, setCurrencyModal }) {
       }
     }
   };
+  let closeModal = () => {
+    let total = localStorage.getItem("denominations");
+    total = JSON.parse(total);
+    total = total?.length;
+
+    if (total > 2) {
+      setopen(false);
+      setCurrencyModal(true);
+    } else {
+      toast({
+        variant: "Error",
+        title: "Success ",
+        description: "Please add more denomination(atleast 3)",
+        //
+      });
+    }
+  };
   // console.log("errorMessage", errorMessage);
   return (
-    <Dialog open={open} onOpenChange={setopen}>
+    <Dialog open={open} onOpenChange={closeModal}>
       <DialogContent className="sm:max-w-[325px] w-11/12 bg-white border-none rounded">
         <DialogHeader>
           <DialogTitle>ADD DENOMINATION</DialogTitle>

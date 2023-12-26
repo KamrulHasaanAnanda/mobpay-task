@@ -65,26 +65,45 @@ function CurrencyModal({ open, setopen, setdenominationsModal }) {
       [name]: values,
     });
   };
+
+  let closeModal = () => {
+    let total = localStorage.getItem("currency");
+    total = JSON.parse(total);
+    total = total?.length;
+    
+    if (total > 0) {
+      setopen(false);
+    } else {
+      toast({
+        variant: "Error",
+        title: "Success ",
+        description: "Please add currency(atleast 1)",
+        //
+      });
+    }
+  };
   let submit = () => {
-    // console.log('formData', formData)
-    if (!formData?.currency_name) {
+    console.log("formData", formData?.currency_name);
+    if (formData?.currency_name == null) {
       seterrorMessage({
         ...errorMessage,
         currency_name: "Currency name is empty",
       });
-    }
-    if (!formData?.currency_sign) {
+    } else if (formData?.currency_sign == null) {
       seterrorMessage({
         ...errorMessage,
         currency_sign: "Currency sign can not be empty",
       });
-    }
-    if (formData?.denominations?.length === 0) {
+    } else if (formData?.denominations?.length === 0 ) {
       seterrorMessage({
         ...errorMessage,
         denominations: "Denominations can not be empty or less than three",
       });
-    } else {
+    } else if (
+      formData?.currency_name &&
+      formData?.currency_sign &&
+      formData?.denominations?.length > 2
+    ) {
       seterrorMessage({
         currency_name: null,
         currency_sign: null,
@@ -98,7 +117,6 @@ function CurrencyModal({ open, setopen, setdenominationsModal }) {
 
         localStorage.setItem("currency", JSON.stringify(data));
         localStorage.setItem("selected_currency", JSON.stringify(formData ));
-
 
         setformData({
           denominations: null,
@@ -131,7 +149,7 @@ function CurrencyModal({ open, setopen, setdenominationsModal }) {
     }
   };
   return (
-    <Dialog open={open} onOpenChange={setopen}>
+    <Dialog open={open} onOpenChange={closeModal}>
       <DialogContent className="sm:max-w-[325px] w-11/12 bg-white border-none rounded">
         <DialogHeader>
           <DialogTitle>ADD CURRENCY</DialogTitle>

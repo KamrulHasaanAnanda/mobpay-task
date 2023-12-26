@@ -68,7 +68,7 @@ function ChangeCurrencyModal({ open, setopen,setCurrencyModal }) {
                   background: selectedCurrencies?.currency_name === currency?.currency_name ? "#FF5722" : "#8BC34A",
                 }}
               >
-                <h1 className="text-lg font-normal text-white">
+                <h1 className="text-base font-normal text-white">
                   {currency?.currency_sign} {currency?.currency_name}
                 </h1>
 

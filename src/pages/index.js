@@ -3,7 +3,7 @@ import { useEffect, useState } from "react";
 import Denominations from "@/components/Denominations";
 import DenominationAdd from "@/components/DenominationAdd";
 import Balance from "@/components/Balance";
-export default function Home({currencyModal,setCurrencyModal}) {
+export default function Home({ currencyModal, setCurrencyModal }) {
   // console.log('props', props)
   const [input, setInput] = useState(0);
   const [data, setdata] = useState();
@@ -11,14 +11,21 @@ export default function Home({currencyModal,setCurrencyModal}) {
 
   useEffect(() => {
     let currencyData = localStorage.getItem("selected_currency");
+    let nowValue = localStorage.getItem("nowValue");
+    nowValue = JSON?.parse(nowValue);
+    console.log("nowValue", nowValue);
     currencyData = JSON.parse(currencyData);
     setdata(currencyData);
-    const v = currencyData?.denominations.map(value => ({
-      value: parseInt(value, 10), // Convert value to a number
-      count: 0
-    }));
+    if (nowValue?.length > 2) {
+      setInput(nowValue);
+    } else {
+      const v = currencyData?.denominations.map((value) => ({
+        value: parseInt(value, 10), // Convert value to a number
+        count: 0,
+      }));
 
-    setInput(v)
+      setInput(v);
+    }
   }, [currencyModal]);
 
   return (
@@ -26,12 +33,22 @@ export default function Home({currencyModal,setCurrencyModal}) {
       <Balance input={input} />
       <div className="flex flex-col items-center justify-center h-full">
         <div className=" md:w-1/2 w-11/12 sm:w-11/12 lg:w-1/2">
-          <DenominationAdd changeCurrency={changeCurrency} setchangeCurrency={setchangeCurrency} setCurrencyModal={setCurrencyModal} />
+          <DenominationAdd
+            changeCurrency={changeCurrency}
+            setchangeCurrency={setchangeCurrency}
+            setCurrencyModal={setCurrencyModal}
+          />
           {input?.length > 0 &&
-            input.map((denomination,index) => (
-              <Denominations input={input} setInput={setInput} key={index} count={denomination?.count} value={denomination?.value} sign={data?.currency_sign} />
-            ))
-            }
+            input.map((denomination, index) => (
+              <Denominations
+                input={input}
+                setInput={setInput}
+                key={index}
+                count={denomination?.count}
+                value={denomination?.value}
+                sign={data?.currency_sign}
+              />
+            ))}
         </div>
       </div>
     </main>
