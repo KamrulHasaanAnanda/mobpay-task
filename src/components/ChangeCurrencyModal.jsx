@@ -53,6 +53,7 @@ function ChangeCurrencyModal({ open, setopen,setCurrencyModal }) {
                     ...currency,
                 }
                 // console.log('formData', formData)
+                localStorage.removeItem('nowValue')
                 localStorage.setItem("selected_currency", JSON.stringify(formData ));
                 toast({
                     variant: "success",
@@ -61,11 +62,12 @@ function ChangeCurrencyModal({ open, setopen,setCurrencyModal }) {
                     //
                   });
                   setopen(false)
+                  window.location.reload();
               }}
                 className="flex gap-2 mb-2 items-center p-2 bg-lime-600 rounded-sm cursor-pointer"
                 key={index}
                 style={{
-                  background: selectedCurrencies?.currency_name === currency?.currency_name ? "#FF5722" : "#8BC34A",
+                  background: selectedCurrencies?.currency_name === currency?.currency_name ? "#8BC34A" : "black",
                 }}
               >
                 <h1 className="text-base font-normal text-white">

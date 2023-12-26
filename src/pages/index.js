@@ -13,7 +13,7 @@ export default function Home({ currencyModal, setCurrencyModal }) {
     let currencyData = localStorage.getItem("selected_currency");
     let nowValue = localStorage.getItem("nowValue");
     nowValue = JSON?.parse(nowValue);
-    console.log("nowValue", nowValue);
+    // console.log("nowValue", nowValue);
     currencyData = JSON.parse(currencyData);
     setdata(currencyData);
     if (nowValue?.length > 2) {
@@ -30,7 +30,7 @@ export default function Home({ currencyModal, setCurrencyModal }) {
 
   return (
     <main className={`flex flex-col h-screen bg-black w-full `}>
-      <Balance input={input} />
+      <Balance input={input} sign={data?.currency_sign} />
       <div className="flex flex-col items-center justify-center h-full">
         <div className=" md:w-1/2 w-11/12 sm:w-11/12 lg:w-1/2">
           <DenominationAdd
